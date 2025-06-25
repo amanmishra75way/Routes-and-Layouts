@@ -6,8 +6,9 @@ import Contact from "./pages/Contact";
 import Dashboard from "./pages/Dashboard";
 import PublicLayouts from "./layouts/PublicLayouts";
 import AdminLayouts from "./layouts/AdminLayouts";
-
+import WithAdmin from "./utils/WithAdmin";
 const App = () => {
+  const ProtectedDashboard = WithAdmin(Dashboard);
   return (
     <Routes>
       {/* Public pages with Navbar + Footer */}
@@ -19,7 +20,7 @@ const App = () => {
 
       {/* Admin pages with Sidebar */}
       <Route path="/admin" element={<AdminLayouts />}>
-        <Route index element={<Dashboard />} /> {/* path: "/admin" */}
+        <Route index element={<ProtectedDashboard />} /> {/* path: "/admin" */}
         {/* Add more admin routes like users, settings, etc. here */}
       </Route>
     </Routes>
